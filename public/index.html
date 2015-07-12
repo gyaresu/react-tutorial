@@ -15,7 +15,7 @@
         getInitialState: function () {
           return {data: []}
         },
-        componentDidMount: function () {
+        loadCommentsFromServer: function () {
           $.ajax({
             url: this.props.url,
             dataType: 'json',
@@ -27,6 +27,10 @@
               console.error(this.props.url, status, err.toString())
             }.bind(this)
           })
+        },
+        componentDidMount: function () {
+          this.loadCommentsFromServer()
+          setInterval(this.loadCommentsFromServer, this.props.pollInterval)
         },
         render: function () {
           return (
@@ -51,7 +55,8 @@
 
           return (
             <div className='commentList'>
-              {commentNodes}    
+              {commentNodes} 
+              {Date()}
             </div>
           )
         }
@@ -61,6 +66,7 @@
         render: function () {
           return (
             <div className='commentForm'>
+              <br/>
               Hello, world! I am a Comment Form.
             </div>
           )
@@ -81,7 +87,7 @@
         }
       })
 
-      React.render(<CommentBox url='comments.json' />, document.getElementById('content'))
+      React.render(<CommentBox url='comments.json' pollInterval={1000}/>, document.getElementById('content'))
     </script>
   </body>
 </html>
