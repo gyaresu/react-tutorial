@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/gyaresu/react-tutorial/issues"
   },
-  "homepage": "https://github.com/gyaresu/react-tutorial#readme"
+  "homepage": "https://github.com/gyaresu/react-tutorial#readme",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "fs": "0.0.2",
+    "path": "^0.11.14"
+  }
 }
